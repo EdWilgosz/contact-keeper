@@ -11,8 +11,7 @@ const ContactSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   phone: {
     type: String
@@ -20,12 +19,13 @@ const ContactSchema = mongoose.Schema({
   type: {
     type: String,
     default: 'personal'
-
   },
   date: {
     type: Date,
     default: Date.now
   }
-});
+}).index({ user: 1, name: 1, email: 1, phone: 1}, { unique: true });
+
+
 
 module.exports = mongoose.model('contact', ContactSchema);
